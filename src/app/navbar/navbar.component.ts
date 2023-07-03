@@ -54,9 +54,7 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  deleteBoard(id
-                :
-                number
+  deleteBoard(id:number
   ) {
     this._boardService.deleteBoard(id).subscribe({
       next: (res) => {

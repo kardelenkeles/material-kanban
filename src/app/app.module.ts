@@ -63,7 +63,9 @@ import {MatCardModule} from "@angular/material/card";
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
-    DragDropModule
+    DragDropModule,
+
+
   ],
   providers: [{provide: MatDialogRef, useValue: {}},
     {provide: MAT_DIALOG_DATA, useValue: []},],

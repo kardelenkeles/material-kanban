@@ -1,33 +1,30 @@
 <mat-toolbar>
-   <a routerLink="" mat-raised-button color="primary" class="m-3">Board List</a>
+  <a routerLink="" mat-raised-button color="primary" class="m-3">Board List</a>
 </mat-toolbar>
 
-  <form [formGroup]="addForm" (ngSubmit)="onFormSubmit()">
-    <div mat-dialog-content>
-      <mat-form-field>
-        Task Header:
-        <input matInput formControlName="item">
-      </mat-form-field>
-    </div>
-    <div mat-dialog-content>
-      <mat-form-field>
-        Task Content:
-        <input matInput formControlName="item">
-      </mat-form-field>
-    </div>
-    <!--    <div class="colorPaletteContainer">-->
-    <!--      <h3>Pick a Color:</h3>-->
-    <!--      <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"-->
-    <!--            [cpCancelButton]="true" [(colorPicker)]="arrayColors[selectedColor]"></span>-->
-    <!--      <div [style.background]="arrayColors['color1']" (click)="selectedColor='color1'"></div>-->
-    <!--      <div [style.background]="arrayColors['color2']" (click)="selectedColor='color2'"></div>-->
-    <!--    </div>-->
-    <div mat-dialog-actions class="action">
-      <button mat-stroked-button [disabled]="addForm.invalid" color="warn" type="submit" (click)="addTask()" >Save</button>
-    </div>
-  </form>
+<form [formGroup]="addForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      Task Header:
+      <input matInput formControlName="item">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field>
+      Task Content:
+      <input matInput formControlName="item">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    Color
+    <input
+      [(colorPicker)]="color" [style.background]="color" name="color1">
 
-
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-stroked-button [disabled]="addForm.invalid" color="warn" type="submit" (click)="addTask()">Save</button>
+  </div>
+</form>
 
 
 <div cdkDropListGroup>

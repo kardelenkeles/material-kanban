@@ -17,6 +17,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NavbarComponent} from "../navbar/navbar.component";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-board',
@@ -31,6 +32,7 @@ export class BoardComponent implements OnInit {
   inProgress: Task  [] = [];
   done: Task  [] = [];
 
+  color:any ;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -59,7 +61,8 @@ export class BoardComponent implements OnInit {
   addTask() {
     this.backlog.push({
       header: this.addForm.value.item,
-      content: this.addForm.value.item
+      content: this.addForm.value.item,
+      color: this.addForm.value.item
     })
   }
 
@@ -74,15 +77,17 @@ export class BoardComponent implements OnInit {
   //   });
   // }
 
+
   getTaskList() {
-    this.tService.getTask().subscribe({
-      next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      },
-      error: console.log,
-    })
+    this.tService.getTask(this.data)
+      .subscribe((data: any) => {
+          this.backlog = data.filter((i: any) => i.status === 'backlog');
+          this.task = data.filter((i:any) => i.status === 'task');
+          this.inProgress = data.filter((i:any) => i.status === 'inProgress');
+          this.done = data.filter((i:any) => i.status === 'done');
+        console.log(data)
+        }
+      )
   }
 
   deleteTask(id: number
@@ -97,10 +102,6 @@ export class BoardComponent implements OnInit {
   }
 
 
-// getTasksByCategoryId(id: number): Task[] {
-//   return this.tasks.filter(item => item.category_id == id);
-// }
-
   onFormSubmit() {
     this._addTaskService.addTask(this.addForm.value)
       .subscribe({
@@ -114,7 +115,9 @@ export class BoardComponent implements OnInit {
       });
   }
 
-  drop(event: CdkDragDrop<Task[]>
+  drop(event
+         :
+         CdkDragDrop<Task[]>
   ) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -127,4 +130,5 @@ export class BoardComponent implements OnInit {
       );
     }
   }
+
 }

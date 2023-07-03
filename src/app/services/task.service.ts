@@ -16,16 +16,13 @@ export class TaskService {
     return this._http.post('http://localhost:3004/task', data);
   }
 
-  getTask(): Observable<any> {
-    return this._http.get('http://localhost:3004/task');
+  getTask(data: any): Observable<any> {
+    return this._http.get('http://localhost:3004/task', data);
   }
 
   deleteTask(id: number): Observable<any> {
     return this._http.delete(`http://localhost:3004/task/${id}`);
   }
-
-
-
 
 
 }
