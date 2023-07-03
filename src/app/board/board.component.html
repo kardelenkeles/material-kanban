@@ -1,0 +1,85 @@
+<mat-toolbar>
+   <a routerLink="" mat-raised-button color="primary" class="m-3">Board List</a>
+</mat-toolbar>
+
+  <form [formGroup]="addForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content>
+      <mat-form-field>
+        Task Header:
+        <input matInput formControlName="item">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-content>
+      <mat-form-field>
+        Task Content:
+        <input matInput formControlName="item">
+      </mat-form-field>
+    </div>
+    <!--    <div class="colorPaletteContainer">-->
+    <!--      <h3>Pick a Color:</h3>-->
+    <!--      <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"-->
+    <!--            [cpCancelButton]="true" [(colorPicker)]="arrayColors[selectedColor]"></span>-->
+    <!--      <div [style.background]="arrayColors['color1']" (click)="selectedColor='color1'"></div>-->
+    <!--      <div [style.background]="arrayColors['color2']" (click)="selectedColor='color2'"></div>-->
+    <!--    </div>-->
+    <div mat-dialog-actions class="action">
+      <button mat-stroked-button [disabled]="addForm.invalid" color="warn" type="submit" (click)="addTask()" >Save</button>
+    </div>
+  </form>
+
+
+
+
+<div cdkDropListGroup>
+  <div class="card" style="width: 18rem;">
+    <h2>Backlog</h2>
+    <div class="card-body"
+         cdkDropList
+         [cdkDropListData]="backlog"
+         (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let item of backlog" cdkDrag class="kart">
+        <h6 class="card-subtitle mb-2 text-muted">{{item.header}}</h6>
+        <p class="card-text">{{item.content}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <h2>Todo</h2>
+    <div class="card-body"
+         cdkDropList
+         [cdkDropListData]="task"
+         (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let item of task" cdkDrag class="kart">
+        <h6 class="card-subtitle mb-2 text-muted">{{item.header}}</h6>
+        <p class="card-text">{{item.content}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <h2>In Progress</h2>
+    <div class="card-body"
+         cdkDropList
+         [cdkDropListData]="inProgress"
+         (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let item of inProgress" cdkDrag class="kart">
+        <h6 class="card-subtitle mb-2 text-muted">{{item.header}}</h6>
+        <p class="card-text">{{item.content}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <h2>Done</h2>
+    <div class="card-body"
+         cdkDropList
+         [cdkDropListData]="done"
+         (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let item of done" cdkDrag class="kart">
+        <h6 class="card-subtitle mb-2 text-muted">{{item.header}}</h6>
+        <p class="card-text">{{item.content}}</p>
+      </div>
+    </div>
+  </div>
+</div>

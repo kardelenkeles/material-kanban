@@ -1,0 +1,17 @@
+<form [formGroup]="addForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      Board Name:
+      <input matInput formControlName="boardName">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field>
+      Board Description:
+      <input matInput formControlName="boardDescription">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-stroked-button color="warn" type="submit" >{{data ? 'Update' : 'Save' }}</button>
+  </div>
+</form>
