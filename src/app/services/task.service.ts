@@ -13,15 +13,15 @@ export class TaskService {
   }
 
   addTask(data: any): Observable<any> {
-    return this._http.post('http://localhost:3000/task', data);
+    return this._http.post('http://localhost:3004/task', data);
   }
 
   getTask(): Observable<any> {
-    return this._http.get('http://localhost:3000/task');
+    return this._http.get('http://localhost:3004/task');
   }
 
   deleteTask(id: number): Observable<any> {
-    return this._http.delete(`http://localhost:3000/task/${id}`);
+    return this._http.delete(`http://localhost:3004/task/${id}`);
   }
 
 

@@ -30,25 +30,5 @@ export class BoardService {
     return this._http.delete(`http://localhost:3000/board/${id}`);
   }
 
-  categoryList: Category[] = [{
-
-    id: 1,
-    name: "Backlog",
-
-  },
-    {
-      id: 2,
-      name: "To Do"
-    },
-    {
-      id: 3,
-      name: "In Progress"
-    },
-    {
-      id: 4,
-      name: "Done"
-    }
-  ]
-
 
 }
